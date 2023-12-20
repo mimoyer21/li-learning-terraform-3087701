@@ -55,7 +55,7 @@ module "blog_alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 6.0"
 
-  name    = "${var.environment.name)blog-alb"
+  name    = "${var.environment.name}-blog-alb"
 
   load_balancer_type = "application"
 
@@ -98,7 +98,7 @@ module "blog_alb" {
 module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "5.1.0"
-  name    = "${var.environment.name)-blog"
+  name    = "${var.environment.name}-blog"
 
   vpc_id = module.blog_vpc.vpc_id
 
@@ -110,7 +110,7 @@ module "blog_sg" {
 }
 
 resource "aws_security_group" "blog" {
-  name        = "${var.environment.name)blog"
+  name        = "${var.environment.name}-blog"
   description = "Allow http and https in. Allow everything out"
 
   vpc_id = data.aws_vpc.default.id
